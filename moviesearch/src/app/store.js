@@ -4,6 +4,7 @@ import filtersReducer from "../features/filters/filtersSlice";
 import resultsReducer from "../features/results/resultsSlice";
 import categoryReducer from "../features/category/categorySlice";
 import searchTypeReducer from "../features/searchType/searchTypeSlice";
+import watchedMoviesReducer from "../features/watchedMovies/watchedMoviesSlice";
 import apiReducer, { api } from "../features/api/api";
 
 const store = configureStore({
@@ -13,6 +14,7 @@ const store = configureStore({
     results: resultsReducer,
     category: categoryReducer,
     searchType: searchTypeReducer,
+    watchedMovies: watchedMoviesReducer,
     [api.reducerPath]: apiReducer,
   },
   middleware: (getDefaultMiddleware) =>

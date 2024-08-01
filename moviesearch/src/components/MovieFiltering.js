@@ -2,19 +2,22 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setCategory,
-  setDirector,
+  setMinYear,
+  setMaxYear,
   setWatchedStatus,
 } from "../features/filters/filtersSlice";
 const MovieFiltering = () => {
   const categories = useSelector((state) => state.category.categories);
-  const [categoryValue, setCategoryValue] = useState(1);
-  const [directorValue, setDirectorValue] = useState("");
+  const [categoryValue, setCategoryValue] = useState(-1);
+  const [minYearValue, setMinYearValue] = useState(0);
+  const [maxYearValue, setMaxYearValue] = useState(0);
   const [watchedStatusValue, setWatchedStatusValue] = useState("All");
   const dispatch = useDispatch();
 
   const applyFilters = () => {
     dispatch(setCategory(categoryValue));
-    dispatch(setDirector(directorValue));
+    dispatch(setMinYear(minYearValue));
+    dispatch(setMaxYear(maxYearValue));
     dispatch(setWatchedStatus(watchedStatusValue));
   };
 
@@ -28,7 +31,7 @@ const MovieFiltering = () => {
             onChange={(e) => setCategoryValue(e.target.value)}
             className="w-full p-2 border bg-slate-800 border-gray-950 rounded-lg shadow-sm"
           >
-            <option>All</option>
+            <option value={-1}>All</option>
             {categories.map((c) => (
               <option key={c.id} value={c.id}>
                 {c.name}
@@ -37,11 +40,23 @@ const MovieFiltering = () => {
           </select>
         </div>
         <div>
-          <label className="block text-lg font-medium mb-2">Director</label>
-          <input
-            onChange={(e) => setDirectorValue(e.target.value)}
-            className="w-full p-2 border bg-slate-800 border-gray-950 rounded-lg shadow-sm"
-          />
+          <label className="block text-lg font-medium mb-2">Year Range</label>
+          <div className="flex space-x-2">
+            <input
+              type="number"
+              placeholder="Min Year"
+              className="w-1/2 p-2 border bg-slate-800 border-gray-950 rounded-lg shadow-sm"
+              value={minYearValue}
+              onChange={(e) => setMinYearValue(e.target.value)}
+            />
+            <input
+              type="number"
+              placeholder="Max Year"
+              className="w-1/2 p-2 border bg-slate-800 border-gray-950 rounded-lg shadow-sm"
+              value={maxYearValue}
+              onChange={(e) => setMaxYearValue(e.target.value)}
+            />
+          </div>
         </div>
         <div>
           <label className="block text-lg font-medium mb-2">

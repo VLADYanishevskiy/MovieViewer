@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  addWatchedMovie,
+  removeWatchedMovie,
+} from "../features/watchedMovies/watchedMoviesSlice";
 
 const MovieDetails = ({ movie }) => {
   const [isTextVisible, setIsTextVisible] = useState(false);
@@ -22,6 +26,20 @@ const MovieDetails = ({ movie }) => {
     if (newNote.trim() !== "") {
       setNotes([...notes, newNote.trim()]);
       setNewNote("");
+    }
+  };
+
+  const dispatch = useDispatch();
+  const watchedMovies = useSelector(
+    (state) => state.watchedMovies.watchedMovies
+  );
+  const isWatched = watchedMovies.includes(movie.id);
+
+  const handleToggleWatched = () => {
+    if (isWatched) {
+      dispatch(removeWatchedMovie(movie.id));
+    } else {
+      dispatch(addWatchedMovie(movie.id));
     }
   };
 
@@ -61,13 +79,26 @@ const MovieDetails = ({ movie }) => {
                       </div>
                       <div>
                         {categoriesText.map((c, i) => (
-                          <span
-                            key={i}
-                            className="inline-block bg-blue-200 text-blue-800 text-xs px-2 py-1 ml-2 rounded-full uppercase font-semibold tracking-wide"
-                          >
-                            {c}
-                          </span>
+                          <div key={i} className="pr-2 inline">
+                            <span className="inline-block bg-blue-200 text-blue-800 text-xs px-2 py-1 rounded-full uppercase font-semibold tracking-wide">
+                              {c}
+                            </span>
+                          </div>
                         ))}
+                      </div>
+                      <div>
+                        <div
+                          className={
+                            "movie rounded-full text-center bg-opacity-55" +
+                            (isWatched ? " bg-red-500" : " bg-cyan-600")
+                          }
+                        >
+                          <button onClick={handleToggleWatched}>
+                            {isWatched
+                              ? "Unmark as Watched"
+                              : "Mark as Watched"}
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
