@@ -1,0 +1,4 @@
+export const ApiKeys = {
+  Token:
+    "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyYThhZWIyNjExNDNiNWZiNzg2NmNiODI3ZGJjMmM1MCIsIm5iZiI6MTcyMjIzNzEyMy4zNDU0MzgsInN1YiI6IjY2YTc0MDEwYTgzYjg0Nzg2YTQxNDQwYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.cwY_5of7fHdO5GZOeSadxXFeDy35_GzafvHkcYk4L30",
+};
