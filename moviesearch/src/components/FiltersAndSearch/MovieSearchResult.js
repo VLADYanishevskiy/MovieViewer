@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
-import { fetchResults } from "../features/results/resultsSlice";
+import { fetchResults } from "../../features/results/resultsSlice";
 import { useDispatch, useSelector } from "react-redux";
-import MovieList from "./MovieList";
-import PageEnumeration from "./PageEnumeration";
+import MovieList from "../MovieDetails/MovieList";
+import PageEnumeration from "../PageEnumeration";
 import {
   goToNextPage,
   goToPage,
   goToPreviousPage,
-} from "../features/search/searchSlice";
-import { filterData } from "../services/filterService";
+} from "../../features/search/searchSlice";
+import { filterData } from "../../services/filterService";
 
 const MovieSearchResult = () => {
   const dispatch = useDispatch();

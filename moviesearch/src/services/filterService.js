@@ -1,3 +1,5 @@
+import { MovieService } from "./movieService";
+
 export const filterData = ({ data, filters }) => {
   if (!data || !data.results || !filters || !Array.isArray(data.results))
     return data;
@@ -34,7 +36,12 @@ export const filterData = ({ data, filters }) => {
     });
   }
 
-  console.log(data, filters, results);
+  if (filters.watchedStatus === "Watched") {
+    results = results.filter((m) => MovieService.Watched.isWatched(m.id));
+  }
+  if (filters.watchedStatus === "Unwatched") {
+    results = results.filter((m) => !MovieService.Watched.isWatched(m.id));
+  }
 
   return { ...data, results };
 };

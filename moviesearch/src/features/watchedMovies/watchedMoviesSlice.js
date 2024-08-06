@@ -2,10 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import { MovieService } from "../../services/movieService";
 
 const initialState = {
-  watchedMovies: MovieService.getWatchedMovies(),
+  watchedMovies: MovieService.Watched.get(),
 };
-
-console.log(MovieService);
 
 const watchedMoviesSlice = createSlice({
   name: "watchedMovies",
@@ -15,13 +13,13 @@ const watchedMoviesSlice = createSlice({
       const movieId = action.payload;
       if (!state.watchedMovies.includes(movieId)) {
         state.watchedMovies.push(movieId);
-        MovieService.addWatchedMovie(movieId);
+        MovieService.Watched.add(movieId);
       }
     },
     removeWatchedMovie: (state, action) => {
       const movieId = action.payload;
       state.watchedMovies = state.watchedMovies.filter((id) => id !== movieId);
-      MovieService.removeWatchedMovie(movieId);
+      MovieService.Watched.remove(movieId);
     },
   },
 });

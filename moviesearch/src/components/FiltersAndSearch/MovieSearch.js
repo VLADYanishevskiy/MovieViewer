@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setQuery } from "../features/search/searchSlice";
+import { setQuery } from "../../features/search/searchSlice";
 
 const MovieSearch = () => {
   const [inputQuery, setInputQuery] = useState("");

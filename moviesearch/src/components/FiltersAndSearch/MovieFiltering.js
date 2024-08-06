@@ -5,7 +5,7 @@ import {
   setMinYear,
   setMaxYear,
   setWatchedStatus,
-} from "../features/filters/filtersSlice";
+} from "../../features/filters/filtersSlice";
 const MovieFiltering = () => {
   const categories = useSelector((state) => state.category.categories);
   const [categoryValue, setCategoryValue] = useState(-1);

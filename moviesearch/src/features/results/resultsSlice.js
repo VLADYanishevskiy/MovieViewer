@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { api } from "../api/api";
-import { filterData } from "../../services/filterService";
 
 export const fetchResults = createAsyncThunk(
   "results/fetchResults",
@@ -13,11 +12,6 @@ export const fetchResults = createAsyncThunk(
     }
 
     return response.data;
-
-    return {
-      data: response.data,
-      filters: filters,
-    };
   }
 );
 

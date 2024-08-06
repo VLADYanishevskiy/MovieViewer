@@ -5,7 +5,6 @@ const baseQuery = fetchBaseQuery({
   baseUrl: "/",
   prepareHeaders: (headers) => {
     headers.set("Authorization", `Bearer ${ApiKeys.Token}`);
-    headers.set("X-Custom-Header", "your-custom-header-value");
     headers.set("accept", "application/json");
     return headers;
   },
@@ -47,8 +46,18 @@ export const api = createApi({
         params: { language: "en" },
       }),
     }),
+    getMovieById: builder.query({
+      query: ({ movieId }) => ({
+        url: `/3/movie/${movieId}?language=en-US`,
+        params: { external_source: "imdb_id" },
+      }),
+    }),
   }),
 });
 
-export const { useSearchByNameQuery, useSearchByFiltersQuery } = api;
+export const {
+  useSearchByNameQuery,
+  useSearchByFiltersQuery,
+  useGetMovieByIdQuery,
+} = api;
 export default api.reducer;
